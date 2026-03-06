@@ -4,7 +4,9 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 
 const app = express();
+
 const PORT = process.env.PORT || 3000;  // ← Render uses process.env.PORT
+
 
 // Middleware
 app.use(cors());
@@ -17,8 +19,8 @@ let contacts = [];
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: process.env.EMAIL_USER || 'knazma436@gmail.com',  // ← Environment variable
-    pass: process.env.EMAIL_PASS || 'fuwv svkw wonu xxse'   // ← Environment variable
+    user: process.env.EMAIL_USER || 'knazma436@gmail.com',
+    pass: process.env.EMAIL_PASS || 'fuwv svkw wonu xxse'
   }
 });
 
@@ -52,6 +54,7 @@ app.post('/api/contact', (req, res) => {
     res.json({ success: true, message: 'Message received!' });
 });
 
+
 // Get all contacts (for admin)
 app.get('/api/contacts', (req, res) => {
     res.json(contacts);
@@ -61,3 +64,4 @@ app.get('/api/contacts', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 }); 
+
