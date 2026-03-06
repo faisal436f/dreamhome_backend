@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;  // ← Render uses process.env.PORT
 
 // Middleware
 app.use(cors());
@@ -17,8 +17,8 @@ let contacts = [];
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'knazma436@gmail.com',  // ← YOUR EMAIL
-    pass: 'fuwv svkw wonu xxse'  // ← GET APP PASSWORD FROM GMAIL
+    user: process.env.EMAIL_USER || 'knazma436@gmail.com',  // ← Environment variable
+    pass: process.env.EMAIL_PASS || 'fuwv svkw wonu xxse'   // ← Environment variable
   }
 });
 
@@ -30,8 +30,8 @@ app.post('/api/contact', (req, res) => {
     
     // Send email
     const mailOptions = {
-      from: 'knazma436@gmail.com',
-      to: 'knazma436@gmail.com',
+      from: process.env.EMAIL_USER || 'knazma436@gmail.com',
+      to: process.env.EMAIL_USER || 'knazma436@gmail.com',
       subject: 'New Contact Form Submission',
       text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`
     };
@@ -39,6 +39,7 @@ app.post('/api/contact', (req, res) => {
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         console.log('Error sending email:', error);
+        return res.status(500).json({ success: false, message: 'Email sending failed' });
       } else {
         console.log('Email sent:', info.response);
       }
@@ -58,5 +59,5 @@ app.get('/api/contacts', (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-});
+    console.log(`Server running on port ${PORT}`);
+}); 
