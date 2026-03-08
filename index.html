@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DreamHome | Find Your Perfect Place</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">Dream<span>Home</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#listings">Properties</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact" class="btn">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header id="home" class="hero">
+        <h1>Find Your Dream Home</h1>
+        <p>Browse the best properties in the city at the best prices.</p>
+        
+        <form class="search-box" onsubmit="event.preventDefault(); alert('Search functionality would go here!');">
+            <input type="text" placeholder="City, Zip, or Address">
+            <select>
+                <option value="">Property Type</option>
+                <option value="house">House</option>
+                <option value="apartment">Apartment</option>
+                <option value="condo">Condo</option>
+            </select>
+            <select>
+                <option value="">Price Range</option>
+                <option value="low">$100k - $300k</option>
+                <option value="mid">$300k - $600k</option>
+                <option value="high">$600k+</option>
+            </select>
+            <button type="submit">Search</button>
+        </form>
+    </header>
+
+    <!-- LISTINGS SECTION -->
+    <section id="listings" class="listings">
+        <div class="section-title">
+            <h2>Featured Properties</h2>
+            <p>Hand-picked properties for you</p>
+        </div>
+
+        <div class="grid">
+            <!-- Property Card 1 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="House 1" class="card-img">
+                <div class="card-content">
+                    <div class="price">$450,000</div>
+                    <div class="address">123 Maple Avenue, Springfield</div>
+                    <p>Beautiful family home with a large garden.</p>
+                    <div class="details">
+                        <span>🛏️ 3 Beds</span>
+                        <span>🚿 2 Baths</span>
+                        <span>📐 2,100 sqft</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property Card 2 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="House 2" class="card-img">
+                <div class="card-content">
+                    <div class="price">$620,000</div>
+                    <div class="address">45 Ocean Drive, Miami</div>
+                    <p>Modern luxury condo with ocean view.</p>
+                    <div class="details">
+                        <span>🛏️ 2 Beds</span>
+                        <span>🚿 2 Baths</span>
+                        <span>📐 1,500 sqft</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property Card 3 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b91d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="House 3" class="card-img">
+                <div class="card-content">
+                    <div class="price">$890,000</div>
+                    <div class="address">88 Hilltop Lane, Beverly Hills</div>
+                    <p>Spacious estate with swimming pool.</p>
+                    <div class="details">
+                        <span>🛏️ 5 Beds</span>
+                        <span>🚿 4 Baths</span>
+                        <span>📐 4,200 sqft</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about">
+        <div class="about-img">
+            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Real Estate Agent">
+        </div>
+        <div class="about-text">
+            <h2>Why Choose DreamHome?</h2>
+            <p>We are a leading real estate agency dedicated to helping you find the perfect place to call home. With over 20 years of experience, we understand the market and what you need.</p>
+            <br>
+            <ul>
+                <li>✅ Verified Listings</li>
+                <li>✅ Expert Agents</li>
+                <li>✅ Best Market Prices</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact">
+        <h2>Get In Touch</h2>
+        <p>Ready to buy or sell? Contact us today.</p>
+
+        <!-- Contact Form (Main) -->
+        <form class="contact-form" id="contact-form">
+            <!-- ✅ ADD: Message container for inline feedback -->
+            <div id="formMessage" class="form-message" style="display: none;"></div>
+            
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <input type="tel" name="phone" placeholder="Your Phone Number">
+            <textarea name="message" rows="5" placeholder="I am interested in..." required></textarea>
+            <!-- ✅ ADD: Button with ID for JavaScript -->
+            <button type="submit" id="submitBtn">Send Message</button>
+        </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2024 DreamHome Real Estate. All rights reserved.</p>
+    </footer>
+
+    <!-- PROPERTY MODAL (Hidden by default) -->
+    <div id="property-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="modal-body">
+                <img id="modal-img" src="" alt="Property" class="modal-img">
+                <div class="modal-details">
+                    <h2 id="modal-price"></h2>
+                    <h3 id="modal-address"></h3>
+                    <p id="modal-description"></p>
+                    <div class="modal-features">
+                        <span id="modal-beds"></span>
+                        <span id="modal-baths"></span>
+                        <span id="modal-sqft"></span>
+                    </div>
+                    <button class="modal-btn" id="contact-agent-btn">Contact Agent</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT AGENT MODAL (Hidden by default) -->
+    <div id="contact-modal" class="modal">
+        <div class="modal-content contact-modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="contact-modal-body">
+                <h2>Contact Agent</h2>
+                <div class="agent-info">
+                    <p><strong>Email:</strong> <a href="mailto:dreamhouse@re.com">dreamhouse@re.com</a></p>
+                    <p><strong>Phone:</strong> <a href="tel:+917827444202">+91 7827444202</a></p>
+                </div>
+                <!-- Contact Form (Modal) - Different ID! -->
+                <form class="contact-form" id="agent-contact-form">
+                    <input type="text" id="agent-name" name="name" placeholder="Your Name" required>
+                    <input type="email" id="agent-email" name="email" placeholder="Your Email" required>
+                    <input type="tel" id="agent-phone" name="phone" placeholder="Your Phone Number">
+                    <textarea id="agent-message" name="message" rows="5" placeholder="I am interested in this property..." required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link to JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
